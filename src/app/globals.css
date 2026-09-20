@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-oswald), "Oswald", Impact, sans-serif;
+  --font-body: var(--font-be-vietnam), "Be Vietnam Pro", system-ui, sans-serif;
+
+  --color-ink: #120e0b;
+  --color-ink-2: #1c1611;
+  --color-ink-3: #2a2219;
+  --color-ink-4: #3b3126;
+  --color-paper: #f2e9d8;
+  --color-paper-2: #e3d6bc;
+  --color-paper-3: #c8b58f;
+  --color-crimson: #9b2c2c;
+  --color-crimson-2: #c2402f;
+  --color-gold: #d5aa55;
+  --color-muted: #a99a80;
+
+  --shadow-page: 0 1px 0 rgb(255 255 255 / 0.05) inset,
+    0 20px 40px -20px rgb(0 0 0 / 0.7), 0 2px 6px rgb(0 0 0 / 0.4);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-crimson);
+  color: var(--color-paper);
+}
+
+/* ---- Textures ---- */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgb(18 14 11 / 0.7) 100%
+  );
+}
+
+/* Nét cọ đỏ giống banner tiêu đề trong truyện */
+.brush {
+  position: relative;
+  isolation: isolate;
+}
+.brush::before {
+  content: "";
+  position: absolute;
+  inset: -0.15em -0.4em;
+  z-index: -1;
+  background: var(--color-crimson);
+  clip-path: polygon(
+    1% 8%, 22% 3%, 48% 6%, 74% 1%, 99% 7%,
+    100% 42%, 98% 71%, 100% 94%,
+    78% 100%, 52% 95%, 27% 99%, 2% 96%,
+    0% 65%, 2% 34%
+  );
+  transform: rotate(-1deg);
+}
+
+/* Đường kẻ trang trí */
+.rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-paper-3) 20%,
+    var(--color-paper-3) 80%,
+    transparent
+  );
+  height: 1px;
+}
+
+/* Thanh cuộn tối */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-4) var(--color-ink);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-4);
+  border-radius: 999px;
+  border: 2px solid var(--color-ink);
+}
+
+/* Fade-in cho trang khi ảnh tải xong */
+.page-img {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.page-img.is-loaded {
+  opacity: 1;
+  transform: none;
+}
+
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--color-ink-2) 20%,
+    var(--color-ink-3) 40%,
+    var(--color-ink-2) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.18s; }
+.rise-3 { animation-delay: 0.3s; }
+.rise-4 { animation-delay: 0.42s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .page-img { animation: none; transition: none; opacity: 1; transform: none; }
+}
