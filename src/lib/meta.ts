@@ -6,7 +6,7 @@ export const MANGA = {
   title: "Ngọn Đuốc Bình Minh",
   subtitle: "Hành trình tìm đường cứu nước 1911 – 1945",
   description:
-    "Truyện tranh lịch sử kể lại hành trình của người thanh niên Nguyễn Tất Thành: từ nỗi đau mất nước, những năm bôn ba năm châu, ánh sáng của Luận cương, việc thành lập Đảng, tiếng gọi Pác Bó cho đến mùa thu Tổng khởi nghĩa 1945 và bản Tuyên ngôn Độc lập.",
+    "Truyện tranh lịch sử kể lại hành trình của người thanh niên Nguyễn Tất Thành: từ nỗi đau mất nước, những năm bôn ba năm châu, ánh sáng của Luận cương, việc thành lập Đảng, tiếng gọi Pác Bó cho đến mùa thu Tổng khởi nghĩa 1945 và bản Tuyên ngôn Độc lập. (Sản phẩm có thêm các tình tiết giả định VD: các lời thoại của nhân vật. Nhưng vẫn đảm bảo nội dung chính sát với thực tế.)",
   author: "Sưu tầm & biên soạn",
   genres: ["Lịch sử", "Chính luận", "Truyện tranh"],
   status: "Hoàn thành",
